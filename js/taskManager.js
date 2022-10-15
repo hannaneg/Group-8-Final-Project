@@ -1,4 +1,4 @@
-let createTaskHtml = (name, description, assignedTo, dueDate, status)=>{
+let createTaskHtml = (name, description, assignedTo, dueDate, status) => {
   const html = `
     <li class="list-group-item">
         <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
@@ -8,19 +8,25 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status)=>{
         <div class="d-flex w-100 mb-3 justify-content-between">
             <small>Assigned To: ${assignedTo}</small>
             <small>Due: ${dueDate}</small>
-        </div>
+        </div>        
         <p>${description}</p>
+        <body>
+            <p>Click the button to Mark the Task as Done.</p>
+            <button onclick="getElementById('Mark as Done').innerHTML=Date()">Done</button>
+            <p id="Mark as Done"></p>
+      </body>
+        
     </li>
     `;
-    return html;
+  return html;
 }
 
-class TaskManager{
-  constructor(currentID = 0){
+class TaskManager {
+  constructor(currentID = 0) {
     this.currentID = currentID;
-    this.tasks =[];
+    this.tasks = [];
   }
-  addTask(name, description, assignedTo, dueDate, status = 'TO-DO'){
+  addTask(name, description, assignedTo, dueDate, status = 'TO-DO') {
     let task = {
       id: this.currentID++,
       name: name,
@@ -33,14 +39,13 @@ class TaskManager{
 
   }
 };
-  render = () => {
-  let tasksHtmlList =[];
+render = () => {
+  let tasksHtmlList = [];
   for (let i = 0; i < this.tasks.length; i++) {
     const task = this.tasks[i];
     const date = new Date(task.dueDate);
-    const formattedDate = `${date.getMonth()}/${
-      date.getDate() + 1
-    }/${date.getFullYear()}`;
+    const formattedDate = `${date.getMonth()}/${date.getDate() + 1
+      }/${date.getFullYear()}`;
     let taskHtml = createTaskHtml(
       task.name,
       task.description,
@@ -52,6 +57,10 @@ class TaskManager{
     tasksHtmlList.push(taskHtml);
   }
   let tasksHtml = tasksHtmlList.join('\n');
-    const tasksList = document.getElementById('newTaskList');
-    tasksList.innerHTML = tasksHtml;
-  };
+  const tasksList = document.getElementById('newTaskList');
+  tasksList.innerHTML = tasksHtml;
+
+};
+
+
+
