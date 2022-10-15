@@ -11,9 +11,8 @@ let createTaskHtml = (name, description, assignedTo, dueDate, status) => {
         </div>        
         <p>${description}</p>
         <body>
-            <p>Click the button to Mark the Task as Done.</p>
-            <button onclick="getElementById('Mark as Done').innerHTML=Date()">Done</button>
-            <p id="Mark as Done"></p>
+            <h6>Click the button to Mark the Task as Done.</h6>
+            <h6 onclick="this.innerHTML = 'Mark As Done'">Done</h6>
       </body>
         
     </li>
